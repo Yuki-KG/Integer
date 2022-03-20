@@ -6,6 +6,7 @@ import {
 import { string, func } from 'prop-types';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
+import Result from './Result';
 
 const Stack = createStackNavigator();
 
@@ -35,15 +36,17 @@ Button.defaultProps = {
 //
 function HomeScreen(props) {
   const { navigation } = props;
-  const { label, onPress } = props;
   const [number, setNumber] = useState('');
   let textInput;
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <View style={styles.leadText}>
-          <Text>整数をボックス内に入力し、ラジオボタンでやりたいことを選択して「実行」ボタンを押してください。</Text>
+        <View>
+          <Text style={styles.leadText}>
+            Put an integer in the text box below,
+            and press either of the buttons.
+          </Text>
         </View>
         <View>
           <TextInput
@@ -51,22 +54,39 @@ function HomeScreen(props) {
             style={styles.inputText}
             value={number}
             onChangeText={(text) => { setNumber(text); }}
+            keyboardType="number-pad"
           />
-        </View>
-        <View style={styles.choice}>
-
         </View>
         <View style={styles.buttons}>
           <Button
-            label="実行"
+            label="Check if it is prime or not"
             onPress={() => {
               navigation.navigate('Result', {
                 num: number,
+                process: 1,
               });
             }}
           />
           <Button
-            label="クリア"
+            label="Get its divisors"
+            onPress={() => {
+              navigation.navigate('Result', {
+                num: number,
+                process: 2,
+              });
+            }}
+          />
+          <Button
+            label="Calculate the factorial of it"
+            onPress={() => {
+              navigation.navigate('Result', {
+                num: number,
+                process: 3,
+              });
+            }}
+          />
+          <Button
+            label="Clear"
             onPress={() => {
               textInput.clear();
             }}
@@ -97,6 +117,7 @@ export default function App() {
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Result" component={Result} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -116,8 +137,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
     fontWeight: 'normal',
-    lineHeight: 32,
     marginTop: 8,
+    marginBottom: 8,
   },
   inputText: {
     fontSize: 16,
@@ -130,10 +151,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   choice: {
-
-  },
-  buttons: {
-    flexDirection: 'row',
   },
   //
   // Button
@@ -141,13 +158,13 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: '#467FD3',
     borderRadius: 4,
-    alignSelf: 'flex-start',
+    /* alignSelf: 'flex-start', */
     marginTop: 12,
     marginRight: 4,
   },
   buttonLabel: {
     fontSize: 16,
-    lineHeight: 32,
+    lineHeight: 24,
     paddingVertical: 8,
     paddingHorizontal: 32,
     color: '#ffffff',
