@@ -24,7 +24,13 @@ function getFactorial(n) {
 }
 
 function getDivisors(n) {
-  return '';
+  let str = '';
+  for (let i = 1; i <= n; i += 1) {
+    if (n % i === 0) {
+      str = `${str}  ${i.toString()}`;
+    }
+  }
+  return str;
 }
 
 export default function Result(props) {
@@ -38,30 +44,27 @@ export default function Result(props) {
     case 1:
       primeOrNot = isPrime(num);
       if (primeOrNot) {
-        resultText = num.toString() + ' is prime.';
+        resultText = `${num.toString()} is prime.`;
       } else {
-        resultText = num.toString() + ' is not prime.';
+        resultText = `${num.toString()} is not prime.`;
       }
       break;
     case 2:
       divisors = getDivisors(num);
-      resultText = 'The divisors of ' + num.toString() + ' are ' + div.toString();
+      resultText = `The divisors of ${num.toString()} are: ${divisors}`;
       break;
     case 3:
       result = getFactorial(num);
-      resultText = 'The factorial of ' + num.toString() + ' is ' + result.toString();
+      resultText = `The factorial of ${num.toString()} is ${result.toString()}`;
       break;
     default:
-      console.log('error');
+      resultText = 'error';
   }
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <View>
-          <Text style={styles.title}>Result</Text>
-        </View>
-        <View>
-          <Text>{`${resultText}`}</Text>
+          <Text style={styles.result}>{`${resultText}`}</Text>
         </View>
       </View>
     </View>
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 27,
     paddingVertical: 24,
   },
-  title: {
+  result: {
     fontSize: 24,
     lineHeight: 32,
     fontWeight: 'bold',
