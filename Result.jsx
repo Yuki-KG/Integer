@@ -2,37 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { shape, integer } from 'prop-types';
 
-function isPrime(n) {
-  if (n === 1) {
-    return false;
-  }
-  let val = true;
-  for (let i = 2; i < n; i += 1) {
-    if (n % i === 0) {
-      val = false;
-    }
-  }
-  return val;
-}
-
-function getFactorial(n) {
-  let val = 1;
-  for (let i = 1; i <= n; i += 1) {
-    val *= i;
-  }
-  return val;
-}
-
-function getDivisors(n) {
-  let str = '';
-  for (let i = 1; i <= n; i += 1) {
-    if (n % i === 0) {
-      str = `${str}  ${i.toString()}`;
-    }
-  }
-  return str;
-}
-
 export default function Result(props) {
   const { route } = props;
   const { num, process } = route.params;
@@ -97,3 +66,34 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 });
+
+function isPrime(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i += 1) {
+    if (n % i === 0) {
+      count += 1;
+    }
+  }
+  if (count === 2) {
+    return true;
+  }
+  return false;
+}
+
+function getFactorial(n) {
+  let val = 1;
+  for (let i = 1; i <= n; i += 1) {
+    val *= i;
+  }
+  return val;
+}
+
+function getDivisors(n) {
+  let str = '';
+  for (let i = 1; i <= n; i += 1) {
+    if (n % i === 0) {
+      str = `${str}  ${i.toString()}`;
+    }
+  }
+  return str;
+}

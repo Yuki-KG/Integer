@@ -1,10 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {
-  StyleSheet, Text, TextInput, View, Button, TouchableOpacity,
+  StyleSheet, Text, TextInput, View, TouchableOpacity, Alert,
 } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import Result from './Result';
 
 //
 // Home Screen
@@ -36,10 +34,14 @@ export default function HomeScreen(props) {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Result', {
-                num: number,
-                process: 1,
-              });
+              if (number > 0) {
+                navigation.navigate('Result', {
+                  num: number,
+                  process: 1,
+                });
+              } else {
+                Alert.alert('Input a positive integer');
+              }
             }}
           >
             <Text style={styles.buttonText}>Check if it is prime or not</Text>
@@ -49,10 +51,14 @@ export default function HomeScreen(props) {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Result', {
-                num: number,
-                process: 2,
-              });
+              if (number > 0) {
+                navigation.navigate('Result', {
+                  num: number,
+                  process: 2,
+                });
+              } else {
+                Alert.alert('Input a positive integer');
+              }
             }}
           >
             <Text style={styles.buttonText}>Get its divisors</Text>
@@ -62,14 +68,18 @@ export default function HomeScreen(props) {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate('Result', {
-                num: number,
-                process: 3,
-              });
+              if (number <= 170) {
+                navigation.navigate('Result', {
+                  num: number,
+                  process: 3,
+                });
+              } else {
+                Alert.alert('Number too large');
+              }
             }}
           >
-              <Text style={styles.buttonText}>Calculate the factorial of it</Text>
-        </TouchableOpacity>
+            <Text style={styles.buttonText}>Calculate the factorial of it</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.buttons}>
           <TouchableOpacity
@@ -116,10 +126,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   buttons: {
-    paddingVertical: 8, 
+    paddingVertical: 8,
   },
   button: {
     backgroundColor: '#467FD3',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
