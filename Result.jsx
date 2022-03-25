@@ -104,13 +104,13 @@ function getDivisors(n) {
 }
 
 function primeFactorization(n) {
-  let quotient = n;
+  let q = n;
   let str = '';
   let i = 2;
   let firstPrimeFactor = true;
-  while (i <= quotient) {
-    if (quotient % i === 0) {
-      quotient /= i;
+  while (i <= q) {
+    if (q % i === 0) {
+      q /= i;
       if (firstPrimeFactor) {
         str = i.toString();
         firstPrimeFactor = false;
