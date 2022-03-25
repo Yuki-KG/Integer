@@ -40,7 +40,7 @@ export default function HomeScreen(props) {
                   process: 1,
                 });
               } else {
-                Alert.alert('Input a positive integer');
+                Alert.alert('Zero is neither prime nor non-prime', 'Input a positive integer.');
               }
             }}
           >
@@ -57,7 +57,7 @@ export default function HomeScreen(props) {
                   process: 2,
                 });
               } else {
-                Alert.alert('Input a positive integer');
+                Alert.alert('Divisors of Zero', 'Input a positive integer.');
               }
             }}
           >
@@ -74,7 +74,7 @@ export default function HomeScreen(props) {
                   process: 3,
                 });
               } else {
-                Alert.alert('Number too large');
+                Alert.alert('Number too large', 'Integer must be 170 or less.');
               }
             }}
           >
