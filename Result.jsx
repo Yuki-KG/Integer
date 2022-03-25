@@ -8,6 +8,7 @@ export default function Result(props) {
   let primeOrNot = false;
   let result = 1;
   let divisors = '';
+  let primeFactors = '';
   let resultText = '';
   switch (process) {
     case 1:
@@ -23,6 +24,10 @@ export default function Result(props) {
       resultText = `The divisors of ${num.toString()} are: ${divisors}`;
       break;
     case 3:
+      primeFactors = primeFactorization(num);
+      resultText = `${num} = ${primeFactors}`;
+      break;
+    case 4:
       result = getFactorial(num);
       resultText = `The factorial of ${num.toString()} is ${result.toString()}`;
       break;
@@ -93,6 +98,27 @@ function getDivisors(n) {
   for (let i = 1; i <= n; i += 1) {
     if (n % i === 0) {
       str = `${str}  ${i.toString()}`;
+    }
+  }
+  return str;
+}
+
+function primeFactorization(n) {
+  let quotient = n;
+  let str = '';
+  let i = 2;
+  let firstPrimeFactor = true;
+  while (i <= quotient) {
+    if (quotient % i === 0) {
+      quotient /= i;
+      if (firstPrimeFactor) {
+        str = i.toString();
+        firstPrimeFactor = false;
+      } else {
+        str += ` x ${i.toString()}`;
+      }
+    } else {
+      i += 1;
     }
   }
   return str;

@@ -68,10 +68,27 @@ export default function HomeScreen(props) {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              if (number <= 170) {
+              if (number > 1) {
                 navigation.navigate('Result', {
                   num: number,
                   process: 3,
+                });
+              } else {
+                Alert.alert('Prime Factorization Unavailable', 'Input an integer of 2 or larger.');
+              }
+            }}
+          >
+            <Text style={styles.buttonText}>Prime Factorize it</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttons}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              if (number <= 170) {
+                navigation.navigate('Result', {
+                  num: number,
+                  process: 4,
                 });
               } else {
                 Alert.alert('Number too large', 'Integer must be 170 or less.');
@@ -139,20 +156,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
   },
-  /*
-  // Button
-  //
-  buttonContainer: {
-    backgroundColor: '#467FD3',
-    borderRadius: 4,
-    marginTop: 12,
-    marginRight: 4,
-  },
-  buttonLabel: {
-    fontSize: 16,
-    lineHeight: 24,
-    paddingVertical: 8,
-    paddingHorizontal: 32,
-    color: '#ffffff',
-  }, */
 });
